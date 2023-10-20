@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="//d26tpo4cm8sb6k.cloudfront.net/style.css" /><script src="//d26tpo4cm8sb6k.cloudfront.net/js/common.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="apple-touch-icon" sizes="180x180" href="//d26tpo4cm8sb6k.cloudfront.net/apple-touch-icon.png">
+  <script src="logic.js"></script>
+</head>
+
+<body style = "background-color: black;">
+
+    <h1 style = "background-color: rgb(30, 151, 231); padding-block: 10px;">Amortization Loan Calculator</h1>
+
+    <div id = "contentout">
+        <div id = "content">
+            <div class = "leftinput">
+                <form name = "loanForm">
+                    <table class = "panel" width = '360px' height = '270px'>
+
+                        <tr>
+                            <tr><td>Total Amount</td><td><input type="text" name="totalAmount" value="200000" class="inlonger indollar"></td></tr>
+                        </tr>
+
+                        <tr>
+                            <td>Down Payment:</td>
+                            <td nowrap>
+                                <input type = "text" name = "downDollar" value = "100000" class="inhalf indollar" onchange = "dollarToPercent();"/>
+                                <input type = "text" name = "downPct" value = "50" class="in4char inpct" onchange = "percentToDollar();"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Loan Term</td>
+                            <td nowrap>
+                                <input type="text" name="termYear" value="14" class="innormal inuiyear"><span class="inuiyearspan">years</span>&nbsp;
+                                <input type="text" name="termMonth" value="6" class="innormal inuiyear"><span class="inuipoundspan">months</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Interest Rate:</td>
+                            <td><input type = "text" name = "rate" value = "5" class="inlonger inpct"/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Extra Monthly Payments:</td>
+                            <td><input type = "text" name = "extra" value = "50" class="inlonger indollar"/></td>
+                        </tr>
+
+                        <tr>
+                            <td style = "padding-top: 25px;" colspan = "5" align = "center">
+                                <input type = "button" style = "background-color: rgb(4, 80, 4);" onclick = "validate();" value = "Calculate"/>
+                                &nbsp;
+                                <input type = "button" style = "background-color: rgb(153, 27, 27);" onclick= "clearForm();" value = "Clear Form"/>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </form>
+            </div>
+            
+            <div class = "rightresult" id = "loanInfo"> <!-- TBD --> </div>
+
+            <div class = "clefthalf" style = "margin-top: 25px;" align: left>
+                <div id = "table"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
