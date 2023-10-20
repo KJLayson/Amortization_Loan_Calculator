@@ -112,7 +112,7 @@ function calculate(totalAmount, downDollar, years, months, percRate, extra)
 
 }
 
-function populateLoanInfo(amount, monthlyPayment, totalPayment, extra)
+function populateLoanInfo(amount, monthlyPayment, totalPayment, extra, totalInterest = 0)
 {
     var info = "";
 
@@ -130,6 +130,9 @@ function populateLoanInfo(amount, monthlyPayment, totalPayment, extra)
     info += "<tr><td>Total Payment:</td>";
     info += "<td style = 'padding-block: 5px;'>$" + totalPayment + "</td></tr>"
 
+    info += "<tr><td>Total Interest:</td>";
+    info += "<td style = 'padding-block: 5px;'>$" + totalInterest + "</td></tr>"
+
     info += "</table>"
 
     document.getElementById("loanInfo").innerHTML = info;
@@ -146,9 +149,11 @@ function populateTable(amount, monthlyPayment, decRate)
                 "<td>Payment</td>" +
                 "<td>Interest</td>" +
                 "<td>Principal</td>" +
+                "<td>Total Interest</td>" +
                 "<td>Balance</td>" +
             "</tr>" +
             "<tr align = 'left'>" +
+                "<td>0</td>" +
                 "<td>0</td>" +
                 "<td>0</td>" +
                 "<td>0</td>" +
@@ -158,6 +163,7 @@ function populateTable(amount, monthlyPayment, decRate)
 
     var currentBalance = amount;
     var paymentCounter = 1;
+    var totalInterest = 0;
 
     while(currentBalance > 0)
     {
@@ -165,6 +171,10 @@ function populateTable(amount, monthlyPayment, decRate)
         var towardsBalance = Math.round((monthlyPayment - towardsInterest) * 100) / 100;
 
         currentBalance = Math.round((currentBalance - towardsBalance) * 100) / 100;
+
+
+        totalInterest += towardsInterest
+        totalInterest = parseFloat(totalInterest.toFixed(2))
 
         if (currentBalance < 0)
         {
@@ -184,6 +194,7 @@ function populateTable(amount, monthlyPayment, decRate)
                 "<td>" + monthlyPayment + "</td>" + 
                 "<td>" + towardsInterest + "</td>" + 
                 "<td>" + towardsBalance + "</td>" + 
+                "<td>" + totalInterest + "</td>" +
                 "<td>" + currentBalance + "</td>" + 
             "</tr>";
 
@@ -192,4 +203,5 @@ function populateTable(amount, monthlyPayment, decRate)
 
     //console.log(table)
     document.getElementById('table').innerHTML = table;
+
 }
